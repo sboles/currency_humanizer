@@ -4,7 +4,7 @@ This program will convert a currency string to an English phrase that is equival
 
 The orders of magnitude used can be found {here}[http://en.wikipedia.org/wiki/Orders_of_magnitude_(numbers)]
 
-== Contributing to currency_humanizer
+== Contributing to Currency Humanizer
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
