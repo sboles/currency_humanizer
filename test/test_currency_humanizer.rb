@@ -28,4 +28,10 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
     assert CurrencyHumanizer.valid_currency_string?("01928740981273049812093847012981029870.01")
   end
 
+  def test_humanize_with_invalid_currencies
+    assert_raise(RuntimeError) do
+      CurrencyHumanizer.humanize("")
+    end
+  end
+
 end
