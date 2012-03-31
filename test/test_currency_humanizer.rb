@@ -44,4 +44,13 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
     assert_equal "and 99/100 dollars", CurrencyHumanizer.build_cents_part("99")
   end
 
+  def test_last_3_digits
+    assert_equal "000", CurrencyHumanizer.last_3_digits("0")
+    assert_equal "000", CurrencyHumanizer.last_3_digits("00")
+    assert_equal "000", CurrencyHumanizer.last_3_digits("000")
+    assert_equal "001", CurrencyHumanizer.last_3_digits("1")
+    assert_equal "001", CurrencyHumanizer.last_3_digits("01")
+    assert_equal "001", CurrencyHumanizer.last_3_digits("001")
+  end
+
 end

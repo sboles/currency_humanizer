@@ -20,4 +20,9 @@ class CurrencyHumanizer
     return "and #{build_cents_fraction(cents_string)} dollars"
   end
 
+  # returns the last 3 digits of a string representation of a whole number, left padded with 0's
+  def self.last_3_digits(number_string)
+    return number_string.rjust(3, "0")[-3..-1]
+  end
+
 end
