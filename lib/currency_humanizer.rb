@@ -12,4 +12,8 @@ class CurrencyHumanizer
     return MATCH_PATTERN.match(currency_string)
   end
 
+  def self.build_cents_part(cents_string)
+    return cents_string + "/100"
+  end
+
 end
