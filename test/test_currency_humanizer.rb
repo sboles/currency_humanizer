@@ -39,4 +39,11 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
     end
   end
 
+  def test_hundredths_part
+    assert_equal "", CurrencyHumanizer.hundredths_part("0")
+    1.upto(9) do |n|
+      assert_equal "#{n} hundred", CurrencyHumanizer.hundredths_part(n.to_s), "#{n} should return '#{n} hundred'"
+    end
+  end
+
 end

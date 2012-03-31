@@ -30,4 +30,13 @@ class CurrencyHumanizer
     return number_string.rjust(3, "0")[-3..-1]
   end
 
+  # Returns human readable English representation of hundredths digit
+  def self.hundredths_part(digit)
+    if "0".eql?(digit)
+      return ""
+    else
+      return "#{digit} hundred"
+    end
+  end
+
 end
