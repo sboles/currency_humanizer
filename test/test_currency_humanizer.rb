@@ -39,4 +39,9 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
     assert_equal "99/100", CurrencyHumanizer.build_cents_fraction("99")
   end
 
+  def test_build_cents_part
+    assert_equal "and 00/100 dollars", CurrencyHumanizer.build_cents_part("00")
+    assert_equal "and 99/100 dollars", CurrencyHumanizer.build_cents_part("99")
+  end
+
 end

@@ -16,4 +16,8 @@ class CurrencyHumanizer
     return cents_string + "/100"
   end
 
+  def self.build_cents_part(cents_string)
+    return "and #{build_cents_fraction(cents_string)} dollars"
+  end
+
 end
