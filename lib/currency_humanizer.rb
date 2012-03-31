@@ -1,21 +1,26 @@
 class CurrencyHumanizer
 
+  # Converts a currency string to a human readable English representation of that string
   def self.humanize(currency_string)
     raise "Invalid Format" unless self.valid_currency_string?(currency_string)
   end
 
   private
 
+  # definition of the regular expression for valid currency strings
   MATCH_PATTERN = /^(\d+)\.(\d\d)$/
 
+  # returns true for valid currency strings, false otherwise
   def self.valid_currency_string?(currency_string)
     return MATCH_PATTERN.match(currency_string)
   end
 
+  # returns the cents fraction
   def self.build_cents_fraction(cents_string)
     return cents_string + "/100"
   end
 
+  # returns the cents part of a currency string
   def self.build_cents_part(cents_string)
     return "and #{build_cents_fraction(cents_string)} dollars"
   end
