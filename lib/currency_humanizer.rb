@@ -3,6 +3,9 @@ class CurrencyHumanizer
   # Converts a currency string to a human readable English representation of that string
   def self.humanize(currency_string)
     raise "Invalid Format" unless self.valid_currency_string?(currency_string)
+    matches = MATCH_PATTERN.match(currency_string)
+    dollars_part = matches[1]
+    cents_part = matches[2]
   end
 
   private
@@ -72,6 +75,19 @@ class CurrencyHumanizer
     tenths_and_ones_part = tenths_and_ones_part(digits[1,2])
     return "" if "".eql?(hundredths_part) && "".eql?(tenths_and_ones_part)
     return [hundredths_part, tenths_and_ones_part, MAGNITUDES[order_of_magnitude]].select do |s| /.+/.match(s) end.join(" ")
+  end
+
+  def self.dollars_part(dollars_string)
+    magnitude = 0
+    current_dollars_string = dollars_string
+    magnitude_parts = []
+    while !current_dollars_string.empty?
+      current_magnitude_string = last_3_digits(current_dollars_string)
+      magnitude_parts << magnitude_part(current_magnitude_string, magnitude)
+      current_dollars_string = current_dollars_string[0...-3]
+      magnitude += 1
+    end
+    return magnitude_parts.reverse.select do |s| /.+/.match(s) end.join(" ")
   end
 
   MAGNITUDES = ["",
