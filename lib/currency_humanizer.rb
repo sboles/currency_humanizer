@@ -57,6 +57,16 @@ class CurrencyHumanizer
     end
   end
 
+  # Returns human readable English representation of tenths_and_ones digit
+  def self.tenths_and_ones_part(digits)
+    tenths_part = tenths_part(digits[0])
+    ones_part = ones_part(digits[1])
+    return ones_part if "0".eql?(digits[0])
+    return TEENS[digits] if "1".eql?(digits[0])
+    return tenths_part if "0".eql?(digits[1])
+    return "#{tenths_part}-#{ones_part}"
+  end
+
   ONES = {"0" => "zero",
           "1" => "one",
           "2" => "two",
@@ -77,5 +87,16 @@ class CurrencyHumanizer
           "7" => "seventy",
           "8" => "eighty",
           "9" => "ninety"}
+
+  TEENS = {"10" => "ten",
+           "11" => "eleven",
+           "12" => "twelve",
+           "13" => "thirteen",
+           "14" => "fourteen",
+           "15" => "fifteen",
+           "16" => "sixteen",
+           "17" => "seventeen",
+           "18" => "eighteen",
+           "19" => "nineteen"}
 
 end
