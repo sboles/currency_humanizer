@@ -118,4 +118,14 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
     assert_equal"ninety-nine", CurrencyHumanizer.tenths_and_ones_part("99"), "99 should return 'ninety-nine'"
   end
 
+  def test_magnitude_part
+    assert_equal"", CurrencyHumanizer.magnitude_part("000", 0), "000 should return ''"
+    assert_equal"one", CurrencyHumanizer.magnitude_part("001", 0), "001 should return 'one'"
+    assert_equal"one thousand", CurrencyHumanizer.magnitude_part("001", 1), "001 should return 'one thousand'"
+    assert_equal"", CurrencyHumanizer.magnitude_part("000", 1), "000 should return ''"
+    assert_equal"one hundred thousand", CurrencyHumanizer.magnitude_part("100", 1), "100 should return 'one hundred thousand'"
+    assert_equal"one hundred one thousand", CurrencyHumanizer.magnitude_part("101", 1), "101 should return 'one hundred one thousand'"
+    assert_equal"one hundred one million", CurrencyHumanizer.magnitude_part("101", 2), "101 should return 'one hundred one million'"
+  end
+
 end

@@ -67,6 +67,29 @@ class CurrencyHumanizer
     return "#{tenths_part}-#{ones_part}"
   end
 
+  def self.magnitude_part(digits, order_of_magnitude)
+    hundredths_part = hundredths_part(digits[0])
+    tenths_and_ones_part = tenths_and_ones_part(digits[1,2])
+    return "" if "".eql?(hundredths_part) && "".eql?(tenths_and_ones_part)
+    return [hundredths_part, tenths_and_ones_part, MAGNITUDES[order_of_magnitude]].select do |s| /.+/.match(s) end.join(" ")
+  end
+
+  MAGNITUDES = ["",
+                "thousand",
+                "million",
+                "billion",
+                "trillion",
+                "quadrillion",
+                "quintillion",
+                "sextillion",
+                "septillion",
+                "octillion",
+                "nonillion",
+                "decillion",
+                "undecillion",
+                "duodecillion",
+                "tredecillion"]
+
   ONES = {"0" => "zero",
           "1" => "one",
           "2" => "two",
