@@ -20,14 +20,9 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
     end
   end
 
-  def test_build_cents_fraction
-    assert_equal "00/100", CurrencyHumanizer.build_cents_fraction("00")
-    assert_equal "99/100", CurrencyHumanizer.build_cents_fraction("99")
-  end
-
-  def test_build_cents_part
-    assert_equal "and 00/100 dollars", CurrencyHumanizer.build_cents_part("00")
-    assert_equal "and 99/100 dollars", CurrencyHumanizer.build_cents_part("99")
+  def test_cents_part
+    assert_equal "00/100", CurrencyHumanizer.cents_part("00")
+    assert_equal "99/100", CurrencyHumanizer.cents_part("99")
   end
 
   def test_last_3_digits
@@ -129,15 +124,15 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
   end
 
   def test_dollars_part
-    assert_equal "", CurrencyHumanizer.dollars_part("0"), "0 should return ''"
-    assert_equal "one", CurrencyHumanizer.dollars_part("1"), "1 should return 'One'"
+    assert_equal "zero", CurrencyHumanizer.dollars_part("0"), "0 should return 'zero'"
+    assert_equal "one", CurrencyHumanizer.dollars_part("1"), "1 should return 'one'"
     assert_equal "one million one thousand", CurrencyHumanizer.dollars_part("1001000"), "1001000 should return 'one million one thousand'"
     assert_equal "one billion one thousand", CurrencyHumanizer.dollars_part("1000001000"), "1000001000 should return 'one billion one thousand'"
   end
 
-#  def test_humanize
-#    assert_equal "Zero and 00/100 dollars", CurrencyHumanizer.humanize("0.00"), "0.00 should return 'Zero and 00/100 dollars'"
-#    assert_equal "One and 00/100 dollars", CurrencyHumanizer.humanize("1.01"), "1.01 should return 'One and 00/100 dollars'"
-#  end
+  def test_humanize
+    assert_equal "Zero and 00/100 dollars", CurrencyHumanizer.humanize("0.00"), "0.00 should return 'Zero and 00/100 dollars'"
+    assert_equal "One and 01/100 dollars", CurrencyHumanizer.humanize("1.01"), "1.01 should return 'One and 01/100 dollars'"
+  end
 
 end

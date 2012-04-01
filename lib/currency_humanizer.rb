@@ -4,8 +4,9 @@ class CurrencyHumanizer
   def self.humanize(currency_string)
     raise "Invalid Format" unless self.valid_currency_string?(currency_string)
     matches = MATCH_PATTERN.match(currency_string)
-    dollars_part = matches[1]
-    cents_part = matches[2]
+    dollars_part_string = matches[1]
+    cents_part_string = matches[2]
+    return "#{dollars_part(dollars_part_string)} and #{cents_part(cents_part_string)} dollars".capitalize
   end
 
   private
@@ -18,14 +19,9 @@ class CurrencyHumanizer
     return MATCH_PATTERN.match(currency_string)
   end
 
-  # returns the cents fraction
-  def self.build_cents_fraction(cents_string)
+  # returns the cents part
+  def self.cents_part(cents_string)
     return "#{cents_string}/100"
-  end
-
-  # returns the cents part of a currency string
-  def self.build_cents_part(cents_string)
-    return "and #{build_cents_fraction(cents_string)} dollars"
   end
 
   # returns the last 3 digits of a string representation of a whole number, left padded with 0's
@@ -70,6 +66,7 @@ class CurrencyHumanizer
     return "#{tenths_part}-#{ones_part}"
   end
 
+  # Returns human readable English representation of a single order of magnitude
   def self.magnitude_part(digits, order_of_magnitude)
     hundredths_part = hundredths_part(digits[0])
     tenths_and_ones_part = tenths_and_ones_part(digits[1,2])
@@ -77,6 +74,7 @@ class CurrencyHumanizer
     return [hundredths_part, tenths_and_ones_part, MAGNITUDES[order_of_magnitude]].select do |s| /.+/.match(s) end.join(" ")
   end
 
+  # Returns human readable English representation of the dollar amount of a currency string
   def self.dollars_part(dollars_string)
     magnitude = 0
     current_dollars_string = dollars_string
@@ -87,7 +85,9 @@ class CurrencyHumanizer
       current_dollars_string = current_dollars_string[0...-3]
       magnitude += 1
     end
-    return magnitude_parts.reverse.select do |s| /.+/.match(s) end.join(" ")
+    dollars_part = magnitude_parts.reverse.select do |s| /.+/.match(s) end.join(" ")
+    return "zero" if dollars_part.empty?
+    return dollars_part
   end
 
   MAGNITUDES = ["",
