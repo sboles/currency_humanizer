@@ -48,6 +48,15 @@ class CurrencyHumanizer
     end
   end
 
+  # Returns human readable English representation of ones digit
+  def self.ones_part(digit)
+    if "0".eql?(digit)
+      return ""
+    else
+      return ONES[digit]
+    end
+  end
+
   ONES = {"0" => "zero",
           "1" => "one",
           "2" => "two",

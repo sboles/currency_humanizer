@@ -65,4 +65,17 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
     assert_equal "ninety",  CurrencyHumanizer.tenths_part("9"), "9 should return 'ninety'"
   end
 
+  def test_ones_part
+    assert_equal"", CurrencyHumanizer.ones_part("0"), "0 should return ''"
+    assert_equal"one", CurrencyHumanizer.ones_part("1"), "1 should return 'one'"
+    assert_equal"two", CurrencyHumanizer.ones_part("2"), "2 should return 'two'"
+    assert_equal"three", CurrencyHumanizer.ones_part("3"), "3 should return 'three'"
+    assert_equal"four", CurrencyHumanizer.ones_part("4"), "4 should return 'four'"
+    assert_equal"five", CurrencyHumanizer.ones_part("5"), "5 should return 'five'"
+    assert_equal"six", CurrencyHumanizer.ones_part("6"), "6 should return 'six'"
+    assert_equal"seven", CurrencyHumanizer.ones_part("7"), "7 should return 'seven'"
+    assert_equal"eight", CurrencyHumanizer.ones_part("8"), "8 should return 'eight'"
+    assert_equal"nine", CurrencyHumanizer.ones_part("9"), "9 should return 'nine'"
+  end
+
 end
