@@ -3,26 +3,30 @@ require 'helper'
 class TestCurrencyHumanizer < Test::Unit::TestCase
 
   def test_invalid_currencies
-    ["", "a", ".", ".0", ".1", "1.", "1.0", "0.0", "0.1", "$0.01", "$0", "1,000.00"].each do |invalid_string|
+    ["a", "$0.01", "$0", "1,000.00", "0.001"].each do |invalid_string|
       assert !CurrencyHumanizer.valid_currency_string?(invalid_string), "#{invalid_string} should be invalid"
     end
   end
 
   def test_valid_currencies
-    ["0.00", "1.00", "1.01", "123.99", "1234.99", "1234567.99", "00000000.99", "01928740981273049812093847012981029870.01"].each do |valid_string|
+    ["0", ".0", ".1", "0.0", ".10", "1", "1.", "0.00", "1.00", "1.01", "123.99", "1234.99", "1234567.99", "00000000.99", "01928740981273049812093847012981029870.01"].each do |valid_string|
       assert CurrencyHumanizer.valid_currency_string?(valid_string), "#{valid_string} should be valid"
     end
   end
 
   def test_humanize_with_invalid_currencies
     assert_raise(RuntimeError) do
-      CurrencyHumanizer.humanize("")
+      CurrencyHumanizer.humanize("0.000")
     end
   end
 
   def test_cents_part
     assert_equal "00/100", CurrencyHumanizer.cents_part("00")
     assert_equal "99/100", CurrencyHumanizer.cents_part("99")
+    assert_equal "00/100", CurrencyHumanizer.cents_part(nil)
+    assert_equal "00/100", CurrencyHumanizer.cents_part("")
+    assert_equal "00/100", CurrencyHumanizer.cents_part("0")
+    assert_equal "10/100", CurrencyHumanizer.cents_part("1")
   end
 
   def test_last_3_digits

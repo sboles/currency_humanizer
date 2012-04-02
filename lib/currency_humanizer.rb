@@ -13,7 +13,7 @@ class CurrencyHumanizer
   private
 
   # definition of the regular expression for valid currency strings
-  MATCH_PATTERN = /^(\d+)\.(\d\d)$/
+  MATCH_PATTERN = /^(\d*)\.?(\d{0,2})$/
 
   # returns true for valid currency strings, false otherwise
   def self.valid_currency_string?(currency_string)
@@ -22,7 +22,8 @@ class CurrencyHumanizer
 
   # returns the cents part
   def self.cents_part(cents_string)
-    return "#{cents_string}/100"
+    return "00/100" if cents_string.nil?
+    return "#{cents_string.ljust(2, "0")}/100"
   end
 
   # returns the last 3 digits of a string representation of a whole number, left padded with 0's
