@@ -6,6 +6,7 @@ class CurrencyHumanizer
     matches = MATCH_PATTERN.match(currency_string)
     dollars_part_string = matches[1]
     cents_part_string = matches[2]
+    return "Too Much!" if dollars_part_string.size > 3*MAGNITUDES.size
     return "#{dollars_part(dollars_part_string)} and #{cents_part(cents_part_string)} dollars".capitalize
   end
 

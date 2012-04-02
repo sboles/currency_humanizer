@@ -133,6 +133,7 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
   def test_humanize
     assert_equal "Zero and 00/100 dollars", CurrencyHumanizer.humanize("0.00"), "0.00 should return 'Zero and 00/100 dollars'"
     assert_equal "One and 01/100 dollars", CurrencyHumanizer.humanize("1.01"), "1.01 should return 'One and 01/100 dollars'"
+    assert_equal "Too Much!", CurrencyHumanizer.humanize("100"*15 + "0.00"), "should return 'Too Much!'"
   end
 
 end
