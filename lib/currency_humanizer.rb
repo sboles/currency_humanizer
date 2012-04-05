@@ -40,8 +40,8 @@ class CurrencyHumanizer
     end
   end
 
-  # Returns human readable English representation of tenths digit
-  def self.tenths_part(digit)
+  # Returns human readable English representation of tens digit
+  def self.tens_part(digit)
     if "0".eql?(digit)
       return ""
     else
@@ -58,22 +58,22 @@ class CurrencyHumanizer
     end
   end
 
-  # Returns human readable English representation of tenths_and_ones digit
-  def self.tenths_and_ones_part(digits)
-    tenths_part = tenths_part(digits[0])
+  # Returns human readable English representation of tens_and_ones digit
+  def self.tens_and_ones_part(digits)
+    tens_part = tens_part(digits[0])
     ones_part = ones_part(digits[1])
     return ones_part if "0".eql?(digits[0])
     return TEENS[digits] if "1".eql?(digits[0])
-    return tenths_part if "0".eql?(digits[1])
-    return "#{tenths_part}-#{ones_part}"
+    return tens_part if "0".eql?(digits[1])
+    return "#{tens_part}-#{ones_part}"
   end
 
   # Returns human readable English representation of a single order of magnitude
   def self.magnitude_part(digits, order_of_magnitude)
     hundreds_part = hundreds_part(digits[0])
-    tenths_and_ones_part = tenths_and_ones_part(digits[1,2])
-    return "" if "".eql?(hundreds_part) && "".eql?(tenths_and_ones_part)
-    return [hundreds_part, tenths_and_ones_part, MAGNITUDES[order_of_magnitude]].select do |s| /.+/.match(s) end.join(" ")
+    tens_and_ones_part = tens_and_ones_part(digits[1,2])
+    return "" if "".eql?(hundreds_part) && "".eql?(tens_and_ones_part)
+    return [hundreds_part, tens_and_ones_part, MAGNITUDES[order_of_magnitude]].select do |s| /.+/.match(s) end.join(" ")
   end
 
   # Returns human readable English representation of the dollar amount of a currency string
