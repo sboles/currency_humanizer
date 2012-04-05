@@ -31,8 +31,8 @@ class CurrencyHumanizer
     return number_string.rjust(3, "0")[-3..-1]
   end
 
-  # Returns human readable English representation of hundredths digit
-  def self.hundredths_part(digit)
+  # Returns human readable English representation of hundreds digit
+  def self.hundreds_part(digit)
     if "0".eql?(digit)
       return ""
     else
@@ -70,10 +70,10 @@ class CurrencyHumanizer
 
   # Returns human readable English representation of a single order of magnitude
   def self.magnitude_part(digits, order_of_magnitude)
-    hundredths_part = hundredths_part(digits[0])
+    hundreds_part = hundreds_part(digits[0])
     tenths_and_ones_part = tenths_and_ones_part(digits[1,2])
-    return "" if "".eql?(hundredths_part) && "".eql?(tenths_and_ones_part)
-    return [hundredths_part, tenths_and_ones_part, MAGNITUDES[order_of_magnitude]].select do |s| /.+/.match(s) end.join(" ")
+    return "" if "".eql?(hundreds_part) && "".eql?(tenths_and_ones_part)
+    return [hundreds_part, tenths_and_ones_part, MAGNITUDES[order_of_magnitude]].select do |s| /.+/.match(s) end.join(" ")
   end
 
   # Returns human readable English representation of the dollar amount of a currency string

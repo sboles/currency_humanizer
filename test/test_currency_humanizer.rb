@@ -38,17 +38,17 @@ class TestCurrencyHumanizer < Test::Unit::TestCase
     end
   end
 
-  def test_hundredths_part
-    assert_equal "", CurrencyHumanizer.hundredths_part("0"), "0 should return ''"
-    assert_equal "one hundred", CurrencyHumanizer.hundredths_part("1"), "1 should return 'one hundred'"
-    assert_equal "two hundred", CurrencyHumanizer.hundredths_part("2"), "2 should return 'two hundred'"
-    assert_equal "three hundred", CurrencyHumanizer.hundredths_part("3"), "3 should return 'three hundred'"
-    assert_equal "four hundred", CurrencyHumanizer.hundredths_part("4"), "4 should return 'four hundred'"
-    assert_equal "five hundred", CurrencyHumanizer.hundredths_part("5"), "5 should return 'five hundred'"
-    assert_equal "six hundred", CurrencyHumanizer.hundredths_part("6"), "6 should return 'six hundred'"
-    assert_equal "seven hundred", CurrencyHumanizer.hundredths_part("7"), "7 should return 'seven hundred'"
-    assert_equal "eight hundred", CurrencyHumanizer.hundredths_part("8"), "8 should return 'eight hundred'"
-    assert_equal "nine hundred", CurrencyHumanizer.hundredths_part("9"), "9 should return 'nine hundred'"
+  def test_hundreds_part
+    assert_equal "", CurrencyHumanizer.hundreds_part("0"), "0 should return ''"
+    assert_equal "one hundred", CurrencyHumanizer.hundreds_part("1"), "1 should return 'one hundred'"
+    assert_equal "two hundred", CurrencyHumanizer.hundreds_part("2"), "2 should return 'two hundred'"
+    assert_equal "three hundred", CurrencyHumanizer.hundreds_part("3"), "3 should return 'three hundred'"
+    assert_equal "four hundred", CurrencyHumanizer.hundreds_part("4"), "4 should return 'four hundred'"
+    assert_equal "five hundred", CurrencyHumanizer.hundreds_part("5"), "5 should return 'five hundred'"
+    assert_equal "six hundred", CurrencyHumanizer.hundreds_part("6"), "6 should return 'six hundred'"
+    assert_equal "seven hundred", CurrencyHumanizer.hundreds_part("7"), "7 should return 'seven hundred'"
+    assert_equal "eight hundred", CurrencyHumanizer.hundreds_part("8"), "8 should return 'eight hundred'"
+    assert_equal "nine hundred", CurrencyHumanizer.hundreds_part("9"), "9 should return 'nine hundred'"
   end
 
   def test_tenths_part
