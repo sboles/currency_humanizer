@@ -3,7 +3,16 @@
 This program will convert a currency string to an English phrase that is
 equivalent to the currency string.
 
-./lib/currency_humanizer_app.rb for usage
+## Examples
+
+```ruby
+CurrencyHumanizer.humanize(1)
+# One and 00/100 dollars
+CurrencyHumanizer.humanize(100.8)
+# One hundred and 80/100 dollars
+CurrencyHumanizer.humanize(7892.09)
+# Seven thousand eight hundred ninety-two and 09/100 dollars
+```
 
 The orders of magnitude used can be found
 [here](http://en.wikipedia.org/wiki/Orders_of_magnitude_(numbers))
